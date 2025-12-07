@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Industrial Dark Bases */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Sci-Fi Cyan Primary */
+    --primary: 190 100% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    /* Industrial Metal Secondary */
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    /* Neon Orange Accent */
+    --accent: 20 100% 50%;
+    --accent-foreground: 0 0% 4%;
+
+    /* Safety Red */
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.5rem;
+    
+    /* Custom Industrial Sci-Fi Tokens */
+    --industrial-dark: 0 0% 6%;
+    --industrial-darker: 0 0% 4%;
+    --metal-light: 0 0% 59%;
+    --metal-medium: 0 0% 49%;
+    --metal-dark: 0 0% 35%;
+    
+    /* Sci-Fi Glows */
+    --glow-cyan: 190 100% 50%;
+    --glow-orange: 20 100% 50%;
+    --glow-purple: 270 70% 60%;
+    
+    /* Emotional Warmth */
+    --warm-pink: 345 100% 70%;
+    --warm-purple: 270 70% 70%;
+    --warm-orange: 20 70% 70%;
+    
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(190 100% 50%) 0%, hsl(20 100% 50%) 100%);
+    --gradient-industrial: linear-gradient(180deg, hsl(0 0% 8%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(190 100% 50% / 0.2) 0%, hsl(20 100% 50% / 0.2) 100%);
+    
+    /* Shadows */
+    --shadow-glow-cyan: 0 0 30px hsl(190 100% 50% / 0.5);
+    --shadow-glow-orange: 0 0 30px hsl(20 100% 50% / 0.5);
+    --shadow-industrial: 0 10px 40px hsl(0 0% 0% / 0.5);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.7);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root - this is already a dark theme */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Exo 2', sans-serif;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+  }
+  
+  h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .glow-cyan {
+    text-shadow: 0 0 20px hsl(var(--glow-cyan));
+  }
+  
+  .glow-orange {
+    text-shadow: 0 0 20px hsl(var(--glow-orange));
+  }
+  
+  .hover-glow-cyan {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-glow-cyan:hover {
+    box-shadow: var(--shadow-glow-cyan);
+    transform: translateY(-2px);
+  }
+  
+  .hover-glow-orange {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-glow-orange:hover {
+    box-shadow: var(--shadow-glow-orange);
+    transform: translateY(-2px);
+  }
+  
+  .gradient-cyber {
+    background: var(--gradient-cyber);
+  }
+  
+  .gradient-industrial {
+    background: var(--gradient-industrial);
+  }
+  
+  .industrial-border {
+    border: 1px solid hsl(var(--border));
+    background: linear-gradient(135deg, hsl(var(--industrial-dark)) 0%, hsl(var(--industrial-darker)) 100%);
+  }
+}

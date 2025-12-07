@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # React Frontend (public via Traefik)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Optional: add your Vite/React env build arguments
+        VITE_API_URL: "${VITE_API_URL:-}"
+    container_name: myreactapp_frontend
+    volumes:
+      # Optional: if the frontend consumes media from a shared bucket/directory
+      - media_volume:/usr/share/nginx/html/media
+    networks:
+      - internal
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_default"
+      
+      # Adjust subdomain here:
+      - "traefik.http.routers.myreactapp.rule=Host(`myapp.example.com`)"
+      
+      - "traefik.http.routers.myreactapp.entrypoints=websecure"
+      - "traefik.http.routers.myreactapp.tls.certresolver=myresolver"
+      - "traefik.http.services.myreactapp.loadbalancer.server.port=80"
+    restart: unless-stopped
+    healthcheck:
+      disable: true   # Not needed for static Nginx
+
+volumes:
+  media_volume:
+
+networks:
+  internal:
+    name: myreactapp_internal
+  traefik:
+    external: true
+    name: traefik_default
